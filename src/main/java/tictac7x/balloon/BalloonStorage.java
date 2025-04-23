@@ -8,14 +8,13 @@ import net.runelite.api.events.ChatMessage;
 import net.runelite.client.config.ConfigManager;
 
 public class BalloonStorage {
-    private final Pattern regex_left_plural = Pattern.compile("You have (?<count>.+) sets of (?<type>.*) left in storage.");
-    private final Pattern regex_left_singular = Pattern.compile("You have one set of (?<type>.*) left in storage.");
-    private final Pattern regex_last = Pattern.compile("You used the last of your (?<type>.*).");
-    private final Pattern regex_store = Pattern.compile("You put the (?<type>.*) in the crate. You now have (?<count>.+) stored.");
-    private final Pattern regex_needed = Pattern.compile("You need 1 (?<type>.*) logs to make this trip.");
-    private final Pattern regex_check = Pattern.compile("This crate currently contains (?<regular>.+) logs, (?<oak>.+) oak logs, (?<willow>.+) willow logs, (?<yew>.+) yew logs and (?<magic>.+) magic logs.");
-
     private final ConfigManager configManager;
+    private final Pattern regexLeftPlural = Pattern.compile("You have (?<count>.+) sets of (?<type>.*) left in storage.");
+    private final Pattern regexLeftSingular = Pattern.compile("You have one set of (?<type>.*) left in storage.");
+    private final Pattern regexLast = Pattern.compile("You used the last of your (?<type>.*).");
+    private final Pattern regexStore = Pattern.compile("You put the (?<type>.*) in the crate. You now have (?<count>.+) stored.");
+    private final Pattern regexNeeded = Pattern.compile("You need 1 (?<type>.*) logs to make this trip.");
+    private final Pattern regexCheck = Pattern.compile("This crate currently contains (?<regular>.+) logs, (?<oak>.+) oak logs, (?<willow>.+) willow logs, (?<yew>.+) yew logs and (?<magic>.+) magic logs.");
 
     public BalloonStorage(final ConfigManager configManager) {
         this.configManager = configManager;
@@ -34,7 +33,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromLeftPluralMessage(final String message) {
-        final Matcher matcher = regex_left_plural.matcher(message);
+        final Matcher matcher = regexLeftPlural.matcher(message);
 
         if (matcher.find()) {
             final String type = matcher.group("type");
@@ -45,7 +44,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromLeftSingularMessage(final String message) {
-        final Matcher matcher = regex_left_singular.matcher(message);
+        final Matcher matcher = regexLeftSingular.matcher(message);
 
         if (matcher.find()) {
             final String type = matcher.group("type");
@@ -54,7 +53,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromLastMessage(final String message) {
-        final Matcher matcher = regex_last.matcher(message);
+        final Matcher matcher = regexLast.matcher(message);
 
         if (matcher.find()) {
             final String type = matcher.group("type");
@@ -63,7 +62,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromCheckMessage(final String message) {
-        final Matcher matcher = regex_check.matcher(message);
+        final Matcher matcher = regexCheck.matcher(message);
         if (!matcher.find()) return;
 
         final int regularLogs = Integer.parseInt(matcher.group("regular"));
@@ -80,7 +79,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromNeededMessage(final String message) {
-        final Matcher matcher = regex_needed.matcher(message);
+        final Matcher matcher = regexNeeded.matcher(message);
 
         if (matcher.find()) {
             final String type = matcher.group("type");
@@ -89,7 +88,7 @@ public class BalloonStorage {
     }
 
     private void updateLogsCountFromStoreMessage(final String message) {
-        final Matcher matcher = regex_store.matcher(message);
+        final Matcher matcher = regexStore.matcher(message);
 
         if (matcher.find()) {
             final String type = matcher.group("type");

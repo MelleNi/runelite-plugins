@@ -10,6 +10,7 @@ import net.runelite.client.config.Units;
 @ConfigGroup(TicTac7xBalloonConfig.group)
 public interface TicTac7xBalloonConfig extends Config {
 	String group = "tictac7x-balloon";
+
 	enum Show { RECENTLY_USED, NEAR_THE_BALLOON, ALL_THE_TIME }
 
 	@ConfigSection(

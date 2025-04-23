@@ -17,8 +17,8 @@ public class BalloonInfoBox extends InfoBox {
     private final String tooltip;
     private boolean renderRecently = false;
 
-    public BalloonInfoBox(final int item_id, final String logConfigKeyName, final String tooltip, final ConfigManager configManager, final TicTac7xBalloonConfig config, final ItemManager items, final Balloon balloon, final Plugin plugin) {
-        super(items.getImage(item_id), plugin);
+    public BalloonInfoBox(final int itemId, final String logConfigKeyName, final String tooltip, final ConfigManager configManager, final TicTac7xBalloonConfig config, final ItemManager items, final Balloon balloon, final TicTac7xBalloonPlugin plugin) {
+        super(items.getImage(itemId), plugin);
         this.configManager = configManager;
         this.config = config;
         this.balloon = balloon;
@@ -49,10 +49,11 @@ public class BalloonInfoBox extends InfoBox {
 
     @Override
     public boolean render() {
-        return
+        return (
             config.show() == TicTac7xBalloonConfig.Show.ALL_THE_TIME ||
             config.show() == TicTac7xBalloonConfig.Show.NEAR_THE_BALLOON && balloon.isVisible() ||
-            config.show() == TicTac7xBalloonConfig.Show.RECENTLY_USED && this.renderRecently;
+            config.show() == TicTac7xBalloonConfig.Show.RECENTLY_USED && this.renderRecently
+        );
     }
 
     private int getCount() {

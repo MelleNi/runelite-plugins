@@ -24,7 +24,7 @@ dependencies {
 }
 
 group = 'tictac7x-balloon'
-version = 'v0.7'
+version = 'v0.7.1'
 sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {

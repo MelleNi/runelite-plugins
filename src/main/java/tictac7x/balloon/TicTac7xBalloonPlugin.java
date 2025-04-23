@@ -3,7 +3,6 @@ package tictac7x.balloon;
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.ItemID;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameObjectSpawned;
 import net.runelite.api.events.GameStateChanged;
@@ -16,6 +15,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
+import tictac7x.balloon.api.ItemId;
 
 import javax.inject.Inject;
 
@@ -61,11 +61,11 @@ public class TicTac7xBalloonPlugin extends Plugin {
 		balloon = new Balloon();
 		balloonStorage = new BalloonStorage(configManager);
 		balloonInfoBoxes = new BalloonInfoBox[]{
-			new BalloonInfoBox(ItemID.LOGS, TicTac7xBalloonConfig.logs_regular, "Regular logs - Entrana / Taverley", configManager, config, itemManager, balloon, this),
-			new BalloonInfoBox(ItemID.OAK_LOGS, TicTac7xBalloonConfig.logs_oak, "Oak logs - Crafting Guild", configManager, config, itemManager, balloon, this),
-			new BalloonInfoBox(ItemID.WILLOW_LOGS, TicTac7xBalloonConfig.logs_willow, "Willow logs - Varrock", configManager, config, itemManager, balloon, this),
-			new BalloonInfoBox(ItemID.YEW_LOGS, TicTac7xBalloonConfig.logs_yew, "Yew logs - Castle Wars", configManager, config, itemManager, balloon, this),
-			new BalloonInfoBox(ItemID.MAGIC_LOGS, TicTac7xBalloonConfig.logs_magic, "Magic logs - Grand Tree", configManager, config, itemManager, balloon, this),
+			new BalloonInfoBox(ItemId.LOGS, TicTac7xBalloonConfig.logs_regular, "Regular logs - Entrana / Taverley", configManager, config, itemManager, balloon, this),
+			new BalloonInfoBox(ItemId.OAK_LOGS, TicTac7xBalloonConfig.logs_oak, "Oak logs - Crafting Guild", configManager, config, itemManager, balloon, this),
+			new BalloonInfoBox(ItemId.WILLOW_LOGS, TicTac7xBalloonConfig.logs_willow, "Willow logs - Varrock", configManager, config, itemManager, balloon, this),
+			new BalloonInfoBox(ItemId.YEW_LOGS, TicTac7xBalloonConfig.logs_yew, "Yew logs - Castle Wars", configManager, config, itemManager, balloon, this),
+			new BalloonInfoBox(ItemId.MAGIC_LOGS, TicTac7xBalloonConfig.logs_magic, "Magic logs - Grand Tree", configManager, config, itemManager, balloon, this),
 		};
 
 		for (final BalloonInfoBox infobox : balloonInfoBoxes) {
